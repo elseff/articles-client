@@ -1,0 +1,62 @@
+h1 {
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 250%;
+}
+h2, h3 {
+  color: #444;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: lighter;
+}
+body {
+  margin: 2em;
+}
+body, input[type="text"], button {
+  color: #333;
+  font-family: Cambria, Georgia, serif;
+}
+button {
+  background-color: #eee;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: black;
+  font-size: 1.2rem;
+  padding: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+button:hover {
+  background-color: black;
+  color: white;
+}
+button:disabled {
+  background-color: #eee;
+  color: #aaa;
+  cursor: auto;
+}
+
+/* everywhere else */
+* {
+  font-family: Montserrat, serif
+}
+
+.user-item{
+  padding: 1rem;
+  background-color: #eeeeee;
+  border-radius: 10px;
+  border-color: #2aa198;
+  border-style: dashed;
+  margin-top: 1rem;
+  transition: background-color 0.150s;
+}
+
+.user-item:hover{
+  background-color: #c9c9c9;
+}
+
+.user-item-link{
+  text-decoration: none;
+  color: #2e2e2e;
+}

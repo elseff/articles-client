@@ -1,0 +1,128 @@
+<div *ngIf="user">
+  <div *ngIf="isEdit">
+    <h2>New User</h2>
+    <input placeholder="First name"
+      class="update-user-input-item"
+      name="first"
+      required
+      pattern="([A-Z][a-zA-Z]*)"
+      minlength="2"
+      maxlength="40"
+      #firstname_error="ngModel"
+      [(ngModel)]="user.firstName">
+    <br>
+
+    <div *ngIf="firstname_error.invalid && (firstname_error.dirty || firstname_error.touched)" class="div-error">
+      <div *ngIf="firstname_error.errors?.['required']">
+        First name is required.
+      </div>
+      <div *ngIf="firstname_error.errors?.['pattern']">
+        First name should be valid.
+      </div>
+      <div *ngIf="firstname_error.errors?.['minlength'] || firstname_error.errors?.['maxlength']">
+        First name size should be between 2 and 40 characters.
+      </div>
+    </div>
+
+    <input placeholder="Last name"
+      class="update-user-input-item"
+      name="last"
+      required
+      pattern="([A-Z][a-zA-Z]*)"
+      minlength="2"
+      maxlength="40"
+      #lastname_error="ngModel"
+      [(ngModel)]="user.lastName">
+    <br>
+
+    <div *ngIf="lastname_error.invalid && (lastname_error.dirty || lastname_error.touched)" class="div-error">
+      <div *ngIf="lastname_error.errors?.['required']">
+        Last name is required.
+      </div>
+      <div *ngIf="lastname_error.errors?.['pattern']">
+        Last name should be valid.
+      </div>
+      <div *ngIf="lastname_error.errors?.['minlength'] || lastname_error.errors?.['maxlength']">
+        Last name size should be between 2 and 40 characters.
+      </div>
+    </div>
+
+    <input placeholder="Email"
+      class="update-user-input-item"
+      name="email"
+      required
+      email
+      #email_error="ngModel"
+      [(ngModel)]="user.email">
+    <br>
+
+    <div *ngIf="email_error.invalid && (email_error.dirty || email_error.touched)" class="div-error">
+      <div *ngIf="email_error.errors?.['required']">
+        Email is required.
+      </div>
+      <div *ngIf="email_error.errors?.['email']">
+        Email should be valid.
+      </div>
+    </div>
+
+    <input placeholder="Country"
+      class="update-user-input-item"
+      name="country"
+      required
+      minlength="3"
+      maxlength="74"
+      pattern="([A-Z][a-zA-Z]*)"
+      #country_error="ngModel"
+      [(ngModel)]="user.country">
+    <br>
+
+    <div *ngIf="country_error.invalid && (country_error.dirty || country_error.touched)" class="div-error">
+      <div *ngIf="country_error.errors?.['required']">
+        Country is required.
+      </div>
+      <div *ngIf="country_error.errors?.['minlength'] || country_error.errors?.['maxlength']">
+        Country size should be between 3 and 74 characters.
+      </div>
+      <div *ngIf="country_error.errors?.['pattern']">
+        Country should be valid.
+      </div>
+    </div>
+    <button (click)="edit()">
+      Back
+    </button>
+
+    <button *ngIf="!firstname_error.invalid && !lastname_error.invalid && !email_error.invalid && !country_error.invalid"
+      class="user__save-button"
+      (click)="updateUser(user)">
+      Save
+    </button>
+
+    <button *ngIf="firstname_error.invalid || lastname_error.invalid || email_error.invalid || country_error.invalid"
+      (click)="updateUser(user)" disabled>
+      Save
+    </button>
+  </div>
+
+  <div *ngIf="!isEdit">
+    <h2><strong>User {{user.firstName}}</strong></h2>
+    <h3><strong>id: </strong> {{user.id}}</h3>
+    <h3><strong>firstName: </strong> {{user.firstName}}</h3>
+    <h3><strong>lastName: </strong> {{user.lastName}}</h3>
+    <h3><strong>email: </strong> {{user.email}}</h3>
+    <h3><strong>country: </strong> {{user.country}}</h3>
+    <a routerLink="/users">
+      <button>
+        Back
+      </button>
+    </a>
+    <a routerlink="/users">
+      <button (click)="deleteUser(user)"
+      class="user__delete-button">
+        Delete
+      </button>
+    </a>
+    <button (click)="edit()">
+      Edit
+    </button>
+  </div>
+</div>
