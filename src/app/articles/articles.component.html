@@ -1,70 +1,70 @@
-<h1 class="article_main-title">{{title}}</h1>
-
-<div *ngIf="!writeArticle">
-  <button (click)="writeArticle=!writeArticle">
-    Write new article
-  </button>
-</div>
-<div *ngIf="writeArticle">
-  <input type="text"
-    class="article__input-title-item"
-    [(ngModel)]="article.title"
-    required
-    minlength="10"
-    #title_error="ngModel"
-    placeholder="Article title">
-
-  <div *ngIf="title_error.invalid && (title_error.dirty || title_error.touched)" class="div-error">
-    <div *ngIf="title_error.errors?.['required']">
-      Title is required.
-    </div>
-    <div *ngIf="title_error.errors?.['minlength']">
-      Title must be at least 10 characters long.
-    </div>
-  </div>
-
-  <textarea name="article"
-    class="article__input-desc-item"
-    placeholder="Write something..."
-    required
-    minlength="10"
-    #desc_error="ngModel"
-    [(ngModel)]="article.description"></textarea><br>
-  <div *ngIf="desc_error.invalid && (desc_error.dirty || desc_error.touched)" class="div-error">
-    <div *ngIf="desc_error.errors?.['required']">
-      Description is required.
-    </div>
-    <div *ngIf="desc_error.errors?.['minlength']">
-      Description must be at least 10 characters long.
-    </div>
-  </div>
-
-  <button *ngIf="!title_error.invalid && !desc_error.invalid" (click)="sendArticle(article)" class="article__write-button">
-    Write
-  </button>
-
-  <button *ngIf="title_error.invalid || desc_error.invalid" disabled>
-    Write
-  </button>
-
-  <button (click)="close()" class="article__close-button">
-    Close
-  </button>
-</div>
-
-<div *ngFor="let article of articles"
-  class="articles">
-  <div class="article-item">
-    <h3 class="article-title">
-      <strong>{{article.title}}</strong>
-    </h3>
-    <p>{{article.description}}</p>
-    <label class="article-date">
-      {{article.date}}
-    </label>
-    <button class="article__delete-button"
-      (click)="deleteArticle(article.id)">Delete
+<div class="main-div">
+  <h1 class="article_main-title">{{title}}</h1>
+  <div *ngIf="!writeArticle">
+    <button (click)="writeArticle=!writeArticle">
+      Write new article
     </button>
   </div>
-</div>
+  <div *ngIf="writeArticle">
+    <input type="text"
+      class="article__input-title-item"
+      [(ngModel)]="article.title"
+      required
+      minlength="10"
+      #title_error="ngModel"
+      placeholder="Article title">
 
+    <div *ngIf="title_error.invalid && (title_error.dirty || title_error.touched)" class="div-error">
+      <div *ngIf="title_error.errors?.['required']">
+        Title is required.
+      </div>
+      <div *ngIf="title_error.errors?.['minlength']">
+        Title must be at least 10 characters long.
+      </div>
+    </div>
+
+    <textarea name="article"
+      class="article__input-desc-item"
+      placeholder="Write something..."
+      required
+      minlength="10"
+      #desc_error="ngModel"
+      [(ngModel)]="article.description"></textarea><br>
+    <div *ngIf="desc_error.invalid && (desc_error.dirty || desc_error.touched)" class="div-error">
+      <div *ngIf="desc_error.errors?.['required']">
+        Description is required.
+      </div>
+      <div *ngIf="desc_error.errors?.['minlength']">
+        Description must be at least 10 characters long.
+      </div>
+    </div>
+
+    <button *ngIf="!title_error.invalid && !desc_error.invalid" (click)="sendArticle(article)" class="article__write-button">
+      Write
+    </button>
+
+    <button *ngIf="title_error.invalid || desc_error.invalid" disabled>
+      Write
+    </button>
+
+    <button (click)="close()" class="article__close-button">
+      Close
+    </button>
+  </div>
+
+  <div *ngFor="let article of articles"
+    class="articles">
+    <div class="article-item">
+      <h3 class="article-title">
+        <strong>{{article.title}}</strong>
+      </h3>
+      <p>{{article.description}}</p>
+      <label class="article-date">
+        {{article.date}}
+      </label>
+      <button class="article__delete-button"
+        (click)="deleteArticle(article.id)">Delete
+      </button>
+    </div>
+  </div>
+</div>

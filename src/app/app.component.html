@@ -1,23 +1,33 @@
 <header class="header">
-  <h1>
-    <a routerLink="" class="header__title-link">
+  <h1 class="header__title">
+    <a routerLink=""
+      class="header__title-link">
       {{title | uppercase}}
     </a>
     <label class="header__title-label">is needs for improvement...</label>
   </h1>
   <nav>
-    <a routerLink="/">
-      <button>Home
-      </button>
-    </a>
-    <a routerLink="/users">
-      <button>Users
-      </button>
-    </a>
-    <a routerLink="/new-user">
-      <button>New user
-      </button>
-    </a>
+    <button routerLink="/home"
+      *ngIf="user!=null"
+      routerLinkActive="active_button">
+      Home
+    </button>
+    <button routerLink="/profile"
+      *ngIf="user!=null"
+      routerLinkActive="active_button">
+      Profile
+    </button>
+
+    <button routerLink="/login"
+      *ngIf="user==null"
+      routerLinkActive="active_button">
+      Register
+    </button>
+    <button routerLink="/sign-in"
+      *ngIf="user==null"
+      routerLinkActive="active_button">
+      Sign in
+    </button>
   </nav>
 </header>
 <main class="main">

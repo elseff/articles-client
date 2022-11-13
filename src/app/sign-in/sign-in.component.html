@@ -1,0 +1,63 @@
+<h1>Sign in</h1>
+<div>
+  <input placeholder="Email"
+    class="new-user-input-item"
+    name="email"
+    required
+    email
+    #email_error="ngModel"
+    [(ngModel)]="user.email">
+  <br>
+
+  <div *ngIf="email_error.invalid && (email_error.dirty || email_error.touched)"
+    class="div-error">
+    <div *ngIf="email_error.errors?.['required']">
+      Email is required.
+    </div>
+    <div *ngIf="email_error.errors?.['email']">
+      Email should be valid.
+    </div>
+  </div>
+
+  <input placeholder="Password"
+    class="new-user-input-item"
+    name="password"
+    required
+    minlength="4"
+    maxlength="255"
+    #password_error="ngModel"
+    [(ngModel)]="user.password">
+  <br>
+
+  <div *ngIf="password_error.invalid && (password_error.dirty || password_error.touched)"
+    class="div-error">
+    <div *ngIf="password_error.errors?.['required']">
+      Password is required.
+    </div>
+    <div *ngIf="password_error.errors?.['minlength'] || password_error.errors?.['maxlength']">
+      Password size should be between 4 and 255 characters.
+    </div>
+    <div *ngIf="password_error.errors?.['pattern']">
+      Password should be valid.
+    </div>
+  </div>
+
+  <button *ngIf="!email_error.invalid && !password_error.invalid"
+    type="submit"
+    class="new_user_button_create"
+  (click)="onSubmit(user)">
+    Sign in
+  </button>
+  <button *ngIf="email_error.invalid || password_error.invalid"
+    type="submit"
+    disabled>
+    Sign in
+  </button>
+</div>
+
+<div>
+  Haven't an account?
+  <button routerLink="/login">
+    Register
+  </button>
+</div>

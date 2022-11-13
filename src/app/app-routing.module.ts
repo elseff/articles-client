@@ -1,30 +1,36 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from "@angular/router";
-import {UsersComponent} from "./users/users.component";
-import {NewUserComponent} from "./new-user/new-user.component";
+import {HomeComponent} from './home/home.component';
+import {AuthGuard} from './_helpers/auth.guard';
+import {LoginComponent} from './login/login.component';
+import {SignInComponent} from './sign-in/sign-in.component';
 import {UserPageComponent} from "./user-page/user-page.component";
-import {HomeComponent} from "./home/home.component";
 
 const routes: Routes = [
   {
-    path:"users", component:UsersComponent
+    path: "home", component: HomeComponent, canActivate: [AuthGuard]
   },
   {
-    path:"new-user", component:NewUserComponent
+    path: "profile", component: UserPageComponent, canActivate: [AuthGuard]
   },
   {
-    path:"users/:{id}", component: UserPageComponent
+    path: "login", component: LoginComponent
   },
   {
-    path:"", component: HomeComponent
-  }
+    path: "sign-in", component: SignInComponent
+  },
+  {
+    path: '**', redirectTo: 'home'
+  },
 ]
+
 @NgModule({
   declarations: [],
   imports: [RouterModule.forRoot(routes),
     CommonModule
   ],
-  exports:[RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

@@ -48,13 +48,14 @@ button:disabled {
 }
 
 .article-item{
-  max-width: 50%;
+  max-width: 70%;
   padding: 1rem;
   background-color: #eeeeee;
   border-radius: 10px;
   border-color: #2aa198;
   border-style: dashed;
-  margin-top: 1rem;
+  text-align: center;
+  margin: 1rem auto auto;
 }
 
 .articles{
@@ -101,4 +102,7 @@ button:disabled {
 
 .div-error{
   color: red;
+}
+.main-div{
+  text-align: center;
 }

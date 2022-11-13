@@ -3,33 +3,39 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
 import {FormsModule} from '@angular/forms';
-import {HttpClientModule} from "@angular/common/http";
-import { UsersComponent } from './users/users.component';
-import { NewUserComponent } from './new-user/new-user.component';
-import { AppRoutingModule } from './app-routing.module';
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {RouterModule} from "@angular/router";
-import { UserPageComponent } from './user-page/user-page.component';
-import { HomeComponent } from './home/home.component';
-import { ArticlesComponent } from './articles/articles.component';
+import {UserPageComponent} from './user-page/user-page.component';
+import {HomeComponent} from './home/home.component';
+import {ArticlesComponent} from './articles/articles.component';
+import {SignInComponent} from './sign-in/sign-in.component';
+
+import {LoginComponent} from './login/login.component';
+import {BasicAuthInterceptor} from "./_helpers/basic-auth.interceptor";
+import {ErrorInterceptor} from "./_helpers/error.interceptor";
+import {AppRoutingModule} from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UsersComponent,
-    NewUserComponent,
     UserPageComponent,
     HomeComponent,
-    ArticlesComponent
+    ArticlesComponent,
+    LoginComponent,
+    SignInComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }

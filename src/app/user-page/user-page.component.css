@@ -57,4 +57,7 @@ button:disabled {
 .div-error{
   color: red;
 }
+.logout_button{
+  background-color: #92c2de;
+}
 

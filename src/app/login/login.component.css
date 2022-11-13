@@ -42,21 +42,20 @@ button:disabled {
   font-family: Montserrat, serif
 }
 
-.user-item{
-  padding: 1rem;
-  background-color: #eeeeee;
-  border-radius: 10px;
-  border-color: #2aa198;
-  border-style: dashed;
+
+.new-user-input-item{
+  padding: 5px;
   margin-top: 1rem;
-  transition: background-color 0.150s;
+  font-size: 20px;
 }
 
-.user-item:hover{
-  background-color: #c9c9c9;
+.div-error{
+  margin-top: 0;
+  padding-top: 0;
+  color: red;
 }
 
-.user-item-link{
-  text-decoration: none;
+.new_user_button_create:hover{
+  background-color: #b8da49;
   color: #2e2e2e;
 }

@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { User } from '../users/user';
-import { UserService } from '../users/user.service';
+import { User } from '../_models/user';
+import { UserService } from '../_services/user.service';
+import {AuthenticationService} from "../_services/authentication.service";
 
 
 @Component({
@@ -9,11 +10,11 @@ import { UserService } from '../users/user.service';
   styleUrls: ['./user-page.component.css']
 })
 export class UserPageComponent implements OnInit {
-  user: User | undefined;
-  endpoint: string = location.pathname
+  user: User | null;
+  userId: number | undefined;
   @Input() isEdit: boolean = false;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private authService: AuthenticationService) {
   }
 
   ngOnInit(): void {
@@ -21,26 +22,24 @@ export class UserPageComponent implements OnInit {
   }
 
   getUser() {
-    let id = this.endpoint.slice(this.endpoint.lastIndexOf("/")+1);
-    this.userService.getUserById(BigInt(id)).subscribe(user => {
+  this.userId = this.authService.userValue?.id
+    this.userService.getUserById(BigInt(<number>this.userId)).subscribe(user => {
       this.user = user
     })
   }
 
+  update(user: User){
+    this.userService.updateUser(BigInt(<number>this.userId),user).subscribe(user=>{
+      this.user = user;
+    })
+    this.edit()
+  }
+
+  logout() {
+    this.authService.logout()
+    this.user = null
+  }
   edit(): void {
     this.isEdit = !this.isEdit;
-  }
-
-  updateUser(user: User) {
-    this.edit()
-
-    this.userService.updateUser(BigInt(user.id), user).subscribe(user => {
-        this.user = user
-      }
-    )
-  }
-  deleteUser(user: User){
-    this.userService.deleteUser(BigInt(user.id))
-    location.replace("/users")
   }
 }

@@ -37,6 +37,7 @@ button {
 
 button:hover {
   background-color: rgba(91, 91, 96, 0.98);
+  border-color: #d8e3e1;
   color: white;
 }
 
@@ -56,8 +57,12 @@ button:disabled {
   display: flex;
   justify-content: space-between;
   background-color: #eeeeee;
-  padding: 0 2rem;
+  padding: 0;
   margin-bottom: 3rem;
+}
+
+.header__title{
+  margin: auto;
 }
 
 .header__title-link {
@@ -79,4 +84,10 @@ button:disabled {
 
 .main{
   padding: 0 10rem;
+}
+.active_button{
+  border-radius: 10px;
+  border-color: #2aa198;
+  border-style: dashed;
+  background-color: #c3dae9;
 }

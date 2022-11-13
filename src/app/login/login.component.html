@@ -1,6 +1,6 @@
-<h1>New User</h1>
-<form method="post"
-  action="/users">
+<h1>Register</h1>
+
+<div>
   <input placeholder="First name"
     class="new-user-input-item"
     name="first"
@@ -68,6 +68,30 @@
     </div>
   </div>
 
+  <input placeholder="Password"
+    class="new-user-input-item"
+    name="password"
+    required
+    minlength="6"
+    maxlength="255"
+    pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,255}$"
+    #password_error="ngModel"
+    [(ngModel)]="user.password">
+  <br>
+
+  <div *ngIf="password_error.invalid && (password_error.dirty || password_error.touched)"
+    class="div-error">
+    <div *ngIf="password_error.errors?.['required']">
+      Password is required.
+    </div>
+    <div *ngIf="password_error.errors?.['minlength'] || password_error.errors?.['maxlength']">
+      Password size should be between 6 and 255 characters.
+    </div>
+    <div *ngIf="password_error.errors?.['pattern']">
+      Password should be valid.
+    </div>
+  </div>
+
   <input placeholder="Country"
     class="new-user-input-item"
     name="country"
@@ -92,16 +116,22 @@
     </div>
   </div>
 
-  <a routerLink="/users">
-    <button>Back
+  <button *ngIf="!firstname_error.invalid && !lastname_error.invalid && !email_error.invalid && !country_error.invalid"
+    (click)="sendUser(user)"
+    class="new_user_button_create">
+    Register
+  </button>
+
+  <button *ngIf="firstname_error.invalid || lastname_error.invalid || email_error.invalid || country_error.invalid"
+    disabled>
+    Register
+  </button>
+</div>
+
+<div>
+  Already have an account?
+    <button routerLink="/sign-in">
+      Sign in
     </button>
-  </a>
-  <button *ngIf="!firstname_error.invalid && !lastname_error.invalid && !email_error.invalid && !country_error.invalid" type="submit"
-    (click)="sendUser(user)" class="new_user_button_create">
-    Create
-  </button>
-  <button *ngIf="firstname_error.invalid || lastname_error.invalid || email_error.invalid || country_error.invalid" type="submit"
-    (click)="sendUser(user)" disabled>
-    Create
-  </button>
-</form>
+
+</div>

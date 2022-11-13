@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ArticleService} from "./article.service";
-import {Article} from "./article";
+import { Article } from '../_models/article';
+import { ArticleService } from '../_services/article.service';
 
 @Component({
-  selector: 'app-topics',
+  selector: 'app-articles',
   templateUrl: './articles.component.html',
   styleUrls: ['./articles.component.css']
 })
@@ -13,17 +13,17 @@ export class ArticlesComponent implements OnInit {
   articles: Article[] = []
   writeArticle: boolean = false;
   constructor(public articleService: ArticleService) {
+    this.getArticles()
   }
 
   getArticles() {
     this.articleService.getArticles().subscribe(articles => {
       this.articles = articles
-      console.log(articles)
     })
   }
 
   ngOnInit(): void {
-    this.getArticles()
+    //this.getArticles()
   }
 
   sendArticle(article: Article) {
