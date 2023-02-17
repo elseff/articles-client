@@ -1,4 +1,12 @@
-# AngularAdvancedFirstProject
+# Elseff Company
 
-FrontEnd par of my project
-Sends http requests to BackEnd part(my-app-back project)
+>Frontend part of my project
+
+<hr/>
+
+### For launch
+
+```
+ng serve
+```
+<hr/>
