@@ -10,10 +10,10 @@ import {HomeComponent} from './home/home.component';
 import {ArticlesComponent} from './articles/articles.component';
 import {SignInComponent} from './sign-in/sign-in.component';
 
-import {LoginComponent} from './login/login.component';
-import {BasicAuthInterceptor} from "./_helpers/basic-auth.interceptor";
+import {SignUpComponent} from './sign-up/sign-up.component';
 import {ErrorInterceptor} from "./_helpers/error.interceptor";
 import {AppRoutingModule} from './app-routing.module';
+import {JwtAuthInterceptor} from "./_helpers/jwt-auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import {AppRoutingModule} from './app-routing.module';
     UserPageComponent,
     HomeComponent,
     ArticlesComponent,
-    LoginComponent,
+    SignUpComponent,
     SignInComponent,
   ],
   imports: [
@@ -32,7 +32,7 @@ import {AppRoutingModule} from './app-routing.module';
     AppRoutingModule,
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: JwtAuthInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
   ],
   bootstrap: [AppComponent],

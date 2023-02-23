@@ -17,7 +17,7 @@ export class AuthenticationService {
       .set('Content-Type', 'application/json')
   };
 
-  private url = "http://192.168.100.4:8080/api/v1/auth";
+  private url = "http://192.168.100.3:8080/api/v1/auth";
 
   constructor(private router: Router, private httpClient: HttpClient) {
     this.userSubject = new BehaviorSubject<AuthUser | null>(JSON.parse(<string>localStorage.getItem("authUser")));
@@ -34,6 +34,7 @@ export class AuthenticationService {
       password: password
     }, this.options)
       .subscribe(resultUser => {
+        console.log("result user is " + resultUser.token)
         localStorage.setItem('authUser', JSON.stringify(resultUser));
         this.userSubject.next(resultUser);
         location.replace("/home")
@@ -44,7 +45,7 @@ export class AuthenticationService {
   logout() {
     localStorage.removeItem('authUser')
     this.userSubject.next(null)
-    location.replace("/login")
+    location.replace("/sign-up")
   }
 
   register(user: User) {

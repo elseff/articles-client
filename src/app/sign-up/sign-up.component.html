@@ -1,4 +1,4 @@
-<h1>Register</h1>
+<h1>Sign up</h1>
 
 <div>
   <input placeholder="First name"
@@ -119,12 +119,12 @@
   <button *ngIf="!firstname_error.invalid && !lastname_error.invalid && !email_error.invalid && !country_error.invalid"
     (click)="sendUser(user)"
     class="new_user_button_create">
-    Register
+    Sign up
   </button>
 
   <button *ngIf="firstname_error.invalid || lastname_error.invalid || email_error.invalid || country_error.invalid"
     disabled>
-    Register
+    Sign up
   </button>
 </div>
 

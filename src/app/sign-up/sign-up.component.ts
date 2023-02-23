@@ -3,11 +3,11 @@ import {User} from '../_models/user';
 import {AuthenticationService} from "../_services/authentication.service";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-sign-up',
+  templateUrl: './sign-up.component.html',
+  styleUrls: ['./sign-up.component.css']
 })
-export class LoginComponent implements OnInit {
+export class SignUpComponent implements OnInit {
   user: User = {
     country: "", email: "", firstName: "", lastName: "", password: "", id: 0
   }
@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   }
 
   sendUser(user: User) {
+    console.log("here send user")
     this.authService.register(user);
   }
 

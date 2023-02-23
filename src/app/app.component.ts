@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from "./_services/authentication.service";
-import {User} from "./_models/user";
 import {environment} from "../environments/environment";
 import {AuthUser} from "./_models/AuthUser";
 
@@ -12,7 +11,7 @@ import {AuthUser} from "./_models/AuthUser";
 export class AppComponent implements OnInit {
   title = `${environment.title}`;
   user: AuthUser | null = {
-    email: "", password: "", id:0
+    email: "", password: "", id: 0
   };
 
   constructor(private authService: AuthenticationService) {

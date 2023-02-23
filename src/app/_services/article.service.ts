@@ -12,7 +12,7 @@ export class ArticleService {
     headers: new HttpHeaders()
       .set('Content-Type', 'application/json')
   };
-  url = "http://192.168.100.4:8080/api/v1/articles";
+  url = "http://192.168.100.3:8080/api/v1/articles";
 
   getArticles(): Observable<Article[]> {
     return this.httpClient.get<Article[]>(this.url, this.options);

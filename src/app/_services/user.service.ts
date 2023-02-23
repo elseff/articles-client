@@ -8,7 +8,7 @@ import {User} from '../_models/user';
 })
 export class UserService {
   private options = {headers: new HttpHeaders().set('Content-Type', 'application/json')};
-  api: string = "http://192.168.100.4:8080/api/v1/users"
+  api: string = "http://192.168.100.3:8080/api/v1/users"
 
   constructor(private httpClient: HttpClient) {
   }

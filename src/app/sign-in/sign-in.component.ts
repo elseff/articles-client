@@ -9,7 +9,12 @@ import {AuthenticationService} from "../_services/authentication.service";
 })
 export class SignInComponent implements OnInit {
   user: User = {
-    firstName: "", lastName: "", email: "", country: "", password: "", id:0
+    id:0,
+    firstName: "",
+    lastName: "",
+    email: "",
+    country: "",
+    password: ""
   }
 
   constructor(private authService: AuthenticationService) {}
@@ -17,6 +22,7 @@ export class SignInComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(user: User){
+    console.log("here send user")
     this.authService.login(user.email, user.password)
   }
 }
