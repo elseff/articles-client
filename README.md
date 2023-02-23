@@ -7,6 +7,7 @@
 ### For launch
 
 ```
+npm install
 ng serve
 ```
 <hr/>
