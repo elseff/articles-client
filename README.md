@@ -1,6 +1,6 @@
-# Elseff Company
+# Articles Client
 
->Frontend part of my project
+>Frontend part of Articles application
 
 <hr/>
 
